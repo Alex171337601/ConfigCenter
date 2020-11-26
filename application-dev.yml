@@ -1,0 +1,23 @@
+# 应用名称
+spring:
+  application:
+    name: service-a
+# 应用服务 WEB 访问端口
+server:
+  port: 8882
+
+eureka:
+  client:
+    #需要被注册
+    register-with-eureka: true
+    #需要被发现
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8881/eureka
+  instance:
+    #使用ip注册服务
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.ip-address}${server.port}
+feign:
+  hystrix:
+    enabled: true
